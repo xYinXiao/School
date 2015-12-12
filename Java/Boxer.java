@@ -1,1 +1,3 @@
-Popopo
+class Boxer {
+	
+}
