@@ -1,0 +1,3 @@
+InputStreamReader -> Crea un flusso da cui leggere in input
+	InputStreamReader input = new InputStreamReader(System.in); -> Corrispondente di stdin
+BufferedReader(input) -> Mette a disposizione un metodo ReadLine() //Legge fino all'invio
