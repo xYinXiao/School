@@ -1,0 +1,3 @@
+class BoxerException extends Exception {
+	
+}
