@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.io.*;
 
 enum Condizione {
 		SCOPERTO,
@@ -17,55 +16,7 @@ class Boxer {
 	private Dado dado = null;
 	private Condizione condizione;
 	private int[][] passaggiDiStato;
-	
-	public Boxer(String _name) throws FileNotFoundException, IOException, TotalPointsException{
-		String line;
-		String[] values;
-		
-		name = _name;
-		BufferedReader reader = new BufferedReader(new FileReader(name + ".txt")); //FileNotFoundException
-		
-		
-		line = reader.readLine();	//IOException
-		values = line.split(" ");
-		hP = Integer.parseInt(values[0]);
-		maxDamage = Integer.parseInt(values[1]);
-		maxDefence = Integer.parseInt(values[2]);
-		
-		if (hP + maxDamage + maxDefence != 200) {
-			throw new TotalPointsException();
-		}
-		
-		passaggiDiStato = new int[4][4];
-		line = reader.readLine();
-		int row = 0, col;
-		while(row < 4) {
-			values = line.split(" ");
-			for(col = 0;col < 4;col++) {
-				passaggiDiStato[row][col] = Integer.parseInt(values[col]);
-			}
-			row++;
-		}
-		random = new Random();
-		condizione = Condizione.SCOPERTO;
-		dado = new Dado(100);
-		
-	}
-	public Boxer(String name, int hP, int maxDamage, int maxDefence) {
-		this.name = name;
-		this.maxDamage = maxDamage;
-		this.maxDefence = maxDefence;
-		this.hP = hP;
-		random = new Random();
-		condizione = Condizione.SCOPERTO;
-		dado = new Dado(100);
-		passaggiDiStato = new int[][]{
-			{10, 40, 20, 30},	/*Scoperto*/
-			{0, 30, 50, 20},	/*Guardia*/
-			{10, 40, 30, 20},	/*Jabbing*/
-			{60, 10, 10, 20},	/*Straight*/
-		};
-	}
+
 	public String cambiaStato() {
 		int i = condizione.ordinal(), j, somma = 0;
 		int casuale = dado.lancio();
@@ -141,6 +92,21 @@ class Boxer {
 	}
 	public Condizione getStato() {
 		return Condizione.values()[condizione.ordinal()];
+	}
+	public Boxer(String name, int hP, int maxDamage, int maxDefence) {
+		this.name = name;
+		this.maxDamage = maxDamage;
+		this.maxDefence = maxDefence;
+		this.hP = hP;
+		random = new Random();
+		condizione = Condizione.SCOPERTO;
+		dado = new Dado(100);
+		passaggiDiStato = new int[][]{
+			{10, 40, 20, 30},	/*Scoperto*/
+			{0, 30, 50, 20},	/*Guardia*/
+			{10, 40, 30, 20},	/*Jabbing*/
+			{60, 10, 10, 20},	/*Straight*/
+		};
 	}
 	public int hook() {
 		return 1;

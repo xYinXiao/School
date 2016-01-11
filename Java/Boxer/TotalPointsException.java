@@ -1,3 +1,0 @@
-class TotalPointsException extends BoxerException {
-	
-}
