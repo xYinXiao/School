@@ -6,15 +6,15 @@
 | -------- | ----------- | ------- |
 | Federico | Chen | 17 |
 
-'''
+```
 Some code here
-'''
+```
 
-'''c
+```c
 int main(int argc, char **argv) {
 	printf("Hello, world!");
 }
-'''
+```
 
 - First
 - Second
